@@ -1,5 +1,9 @@
 package org.simonandews.robolog;
 
+/**
+ * Defines log urgency levels.
+ * @author simon
+ */
 public enum Level {
 	/**
 	 * Code debugging messages useful only to developers.

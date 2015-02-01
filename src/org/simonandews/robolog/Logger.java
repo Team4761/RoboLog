@@ -1,5 +1,10 @@
 package org.simonandews.robolog;
 
+/**
+ * A class for doing logging stuff. You would make a new instance of it in your
+ * own code and then use it to send log messages.
+ * @author Andrews
+ */
 public class Logger {
 	private String l_name;
 	private LoggingMode l_mode = LoggingMode.CONSOLE;
