@@ -8,5 +8,9 @@ public enum LoggingMode {
 	/**
 	 * Log messages to the console with System.out.println().
 	 */
-	CONSOLE
+	CONSOLE,
+	/**
+	 * Log messages to the file.
+	 */
+	FILE
 }
