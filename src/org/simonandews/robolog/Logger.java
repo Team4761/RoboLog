@@ -39,7 +39,7 @@ public class Logger {
 		lName = name;
 		lMode = mode;
 		
-		if (mode == LoggingMode.FILE) {
+		if (mode == LoggingMode.FILE || mode == LoggingMode.LOG) {
 			output = new File("/home/lvuser/log.txt");
 		}
 	}
@@ -112,18 +112,25 @@ public class Logger {
 	 */
 	private void handleMessage (String message, Level level) {
 		String str = String.format(msgFormat, level, lName, message);
-		if (lMode == LoggingMode.CONSOLE) {
-			System.out.println(str);
-		} else if (lMode == LoggingMode.FILE) {
-			try {
-				System.out.println(output.getPath());
-				FileWriter fileWriter = new FileWriter(output.getPath(), true);
-				BufferedWriter bw = new BufferedWriter(fileWriter);
-				bw.write(str + "\n");
-				bw.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		switch (lMode) {
+			case CONSOLE:
+				System.out.println(str);
+		    	break;
+		
+			case LOG:
+				System.out.println(str);
+				// No break so it will also log to a file
+		    	
+			case FILE:
+				try {
+					FileWriter fileWriter = new FileWriter(output.getPath(), true);
+					BufferedWriter bw = new BufferedWriter(fileWriter);
+					bw.write(str + "\n");
+					bw.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		    	break;
 		}
 	}
 	

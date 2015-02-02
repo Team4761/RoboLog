@@ -10,7 +10,11 @@ public enum LoggingMode {
 	 */
 	CONSOLE,
 	/**
-	 * Log messages to the file.
+	 * Log messages to a file.
 	 */
-	FILE
+	FILE,
+	/**
+	 * Log messages to the console with System.out.println() and to a file.
+	 */
+	LOG
 }
