@@ -8,7 +8,8 @@ import java.io.IOException;
 /**
  * A class for doing logging stuff. You would make a new instance of it in your
  * own code and then use it to send log messages.
- * @author Andrews
+ * @author Simon Andrews
+ * @author Jake Kinsella
  */
 public class Logger {
 	private String lName;

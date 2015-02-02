@@ -3,6 +3,7 @@ package org.simonandews.robolog;
 /**
  * Defines ways of sending log output.
  * @author Simon Andrews
+ * @author Jake Kinsella
  */
 public enum LoggingMode {
 	/**
