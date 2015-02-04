@@ -18,7 +18,6 @@ public class Logger {
 	private File output;
 	
 	private LoggingMode lMode = LoggingMode.CONSOLE;
-
 	/**
 	 * Logger. Can log messages.
 	 * @param name Name of the logger. This should usually describe the type of
@@ -41,7 +40,7 @@ public class Logger {
 		lMode = mode;
 		
 		if (mode == LoggingMode.FILE || mode == LoggingMode.LOG) {
-			output = new File("/home/lvuser/log.txt");
+			output = new File("/home/lvuser/log.txt"); //TODO: Make this a variable
 		}
 	}
 	
@@ -112,28 +111,31 @@ public class Logger {
 	 * @param level Level of the message
 	 */
 	private void handleMessage (String message, Level level) {
-		String str = String.format(msgFormat, level, lName, message);
-		switch (lMode) {
-			case CONSOLE:
-				System.out.println(str);
-		    	break;
+		if(LogManager.getMinimumLevel() <= level.ordinal()) {
+			String str = String.format(msgFormat, level, lName, message);
+			switch (lMode) {
+				case CONSOLE:
+					System.out.println(str);
+					break;
 		
-			case LOG:
-				System.out.println(str);
-				// No break so it will also log to a file
-		    	
-			case FILE:
-				try {
-					FileWriter fileWriter = new FileWriter(output.getPath(), true);
-					BufferedWriter bw = new BufferedWriter(fileWriter);
-					bw.write(str + "\n");
-					bw.close();
-				} catch (IOException e) {
-					e.printStackTrace();
+				case LOG:
+					System.out.println(str);
+					// No break so it will also log to a file
+					
+				case FILE:
+					try {
+						FileWriter fileWriter = new FileWriter(output.getPath(), true);
+						BufferedWriter bw = new BufferedWriter(fileWriter);
+						bw.write(str + "\n");
+						bw.close();
+					}
+					catch (IOException e) {
+						e.printStackTrace();
+					}
+					break;
 				}
-		    	break;
+			}
 		}
-	}
 	
 	/**
 	 * Gets the format of log strings.
