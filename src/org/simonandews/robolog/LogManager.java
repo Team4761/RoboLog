@@ -1,5 +1,9 @@
 package org.simonandews.robolog;
 
+/**
+ * Settings class. Used for setting logger preferences globally.
+ * @author Simon Andrews
+ */
 public class LogManager {
 	private static Level minLevel = Level.INFO; //Minimum level is INFO by default
 
