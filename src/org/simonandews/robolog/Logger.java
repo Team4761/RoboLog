@@ -15,7 +15,7 @@ public class Logger {
 	private String lName;
 	private String msgFormat = "[%s] %s - %s";
 	
-	private File output;
+	private File output = new File("/home/lvuser/log.txt");;
 	
 	private LoggingMode lMode = LoggingMode.CONSOLE;
 	/**
@@ -38,10 +38,6 @@ public class Logger {
 	public Logger (String name, LoggingMode mode) {
 		lName = name;
 		lMode = mode;
-		
-		if (mode == LoggingMode.FILE || mode == LoggingMode.LOG) {
-			output = new File("/home/lvuser/log.txt"); //TODO: Make this a variable
-		}
 	}
 	
 	/**
@@ -56,7 +52,11 @@ public class Logger {
 		lName = name;
 		lMode = mode;
 		output = new File(outputFile);
-		
+		try {
+			new FileWriter(output.getPath(), false); // Overwrite old log files
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
 	}
 	
 	/**
@@ -111,7 +111,7 @@ public class Logger {
 	 * @param level Level of the message
 	 */
 	private void handleMessage (String message, Level level) {
-		if(LogManager.getMinimumLevel() <= level.ordinal()) {
+		if(LogManager.getMinimumLevel().ordinal() <= level.ordinal()) {
 			String str = String.format(msgFormat, level, lName, message);
 			switch (lMode) {
 				case CONSOLE:
@@ -154,5 +154,13 @@ public class Logger {
 	 */
 	public void setFormat (String format) {
 		msgFormat = format;
+	}
+	
+	/**
+	 * Set the level of logging
+	 * @param level the level you want to log at
+	 */
+	public void setLevel (Level level) {
+		LogManager.setMinimumLevel(level);
 	}
 }
