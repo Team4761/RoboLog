@@ -1,4 +1,4 @@
-package org.simonandews.robolog;
+package org.simonandrews.robolog;
 
 /**
  * Settings class. Used for setting logger preferences globally.
