@@ -1,5 +1,11 @@
 apply plugin: 'java'
 
+task artifactJar(type: Jar)
+
 task wrapper(type: Wrapper) {
 	gradleVersion = '1.5'
+}
+
+artifacts {
+	archives artifactJar
 }
