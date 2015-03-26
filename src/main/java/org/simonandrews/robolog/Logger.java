@@ -56,7 +56,7 @@ public class Logger {
 			new FileWriter(output.getPath(), false); // Overwrite old log files
 		} catch (IOException e) {
 			e.printStackTrace();
-		} 
+		}
 	}
 	
 	/**
