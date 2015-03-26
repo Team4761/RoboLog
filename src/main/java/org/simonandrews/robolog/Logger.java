@@ -64,7 +64,7 @@ public class Logger {
 	 * developers.
 	 * @param message Message to log
 	 */
-	public void dev (String message) {
+	public void dev (Object message) {
 		handleMessage(message, Level.DEV);
 	}
 	
@@ -73,7 +73,7 @@ public class Logger {
 	 * useful to non-developers.
 	 * @param message Message to log
 	 */
-	public void info (String message) {
+	public void info (Object message) {
 		handleMessage(message, Level.INFO);
 	}
 	
@@ -82,7 +82,7 @@ public class Logger {
 	 * issue, but should probably be fixed.
 	 * @param message Message to log
 	 */
-	public void warn (String message) {
+	public void warn (Object message) {
 		handleMessage(message, Level.WARN);
 	}
 	
@@ -91,7 +91,7 @@ public class Logger {
 	 * program will attempt to continue despite of.
 	 * @param message Message to log
 	 */
-	public void error (String message) {
+	public void error (Object message) {
 		handleMessage(message, Level.ERROR);
 	}
 	
@@ -100,7 +100,7 @@ public class Logger {
 	 * recover from and must end because of.
 	 * @param message Message to log
 	 */
-	public void fatal (String message) {
+	public void fatal (Object message) {
 		handleMessage(message, Level.FATAL);
 	}
 	
@@ -110,7 +110,8 @@ public class Logger {
 	 * @param message Message to log
 	 * @param level Level of the message
 	 */
-	private void handleMessage (String message, Level level) {
+	private void handleMessage (Object message, Level level) {
+		message = message.toString();
 		if(LogManager.getMinimumLevel().ordinal() <= level.ordinal()) {
 			String str = String.format(msgFormat, level, lName, message);
 			switch (lMode) {
