@@ -11,6 +11,7 @@ import java.io.IOException;
  * @author Simon Andrews
  * @author Jake Kinsella
  */
+@Deprecated
 public class Logger {
 	private String lName;
 	private String msgFormat = "[%s] %s - %s";

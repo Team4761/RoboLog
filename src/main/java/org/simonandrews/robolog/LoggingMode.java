@@ -5,6 +5,7 @@ package org.simonandrews.robolog;
  * @author Simon Andrews
  * @author Jake Kinsella
  */
+@Deprecated
 public enum LoggingMode {
 	/**
 	 * Log messages to the console with System.out.println().
